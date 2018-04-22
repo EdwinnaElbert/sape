@@ -38,6 +38,7 @@ class Fetcher
           anchor    = item.css('a').text
           url       = item.css('a').attr('href').text
           url_host  = Domainatrix.parse(url).host
+          binding.pry
           SapeLink.create site_host: site_host, page: page_url, anchor: anchor, host: url_host, raw_link: link, url: url, link_type: link_type
           say "   Added #{site_host} :: #{anchor} #{url_host} #{url}"
         end unless links.nil?

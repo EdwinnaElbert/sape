@@ -12,11 +12,12 @@ module SapeHelper
   end
 
   def sape_links(site_host = request.host)
+    p request.host
     request.original_fullpath.chomp!("/") if request.original_fullpath.last == "/" && request.original_fullpath != '/'
     links = SapeLink.where(page: request.original_fullpath, link_type: "simple", site_host: site_host).
              pluck(:raw_link).
              join(SapeConfig.delimiter(site_host))
-
+    binding.pry
     (SapeConfig.bot_ips(site_host).include?(request.remote_addr) ? (links + SapeConfig.check_code(site_host)) : links).html_safe
   rescue Exception => e
     "<!-- ERROR: #{e.message} -->".html_safe

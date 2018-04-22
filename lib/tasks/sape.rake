@@ -21,7 +21,8 @@ namespace :sape do
       %W{sape_delimiter sape_show_only_block sape_page_obligatory_output sape_new_url}.each do |item|
         config_data[item] = data["__#{item}__"]
       end
-
+      # pages.any?
+      binding.pry
       Fetcher.fetch_config(config_data, bot_ips, site_host)            if pages.any?
       Fetcher.fetch_pages(pages, 'simple', true, site_host)            if pages.any?
       Fetcher.fetch_pages(pages_context, 'context', false, site_host)  if pages_context.any?
