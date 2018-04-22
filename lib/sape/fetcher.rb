@@ -23,7 +23,7 @@ class Fetcher
       rescue OpenURI::HTTPError
         fail "Could not receive data"
       end
-
+      binding.pry
       JSON.parse(data.read)
     end
 
