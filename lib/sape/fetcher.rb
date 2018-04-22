@@ -17,13 +17,13 @@ class Fetcher
       links_type = {'simple' => 'code.php', 'context' => 'code_context.php'}
 
       url = "http://#{server}/#{links_type[link_type]}?user=#{sape_user}&host=#{site_host}&format=json&no_slash_fix=true"
-
+      binding.pry
       begin
         data = open(url)
       rescue OpenURI::HTTPError
         fail "Could not receive data"
       end
-      binding.pry
+
       JSON.parse(data.read)
     end
 
