@@ -15,7 +15,6 @@ class Fetcher
       charset    = config['charset']       || 'utf-8'
       server     = config['server']        || 'dispenser-01.sape.ru'
       links_type = {'simple' => 'code.php', 'context' => 'code_context.php'}
-      binding.pry
       url = "http://#{server}/#{links_type[link_type]}?user=#{sape_user}&host=#{site_host}&format=json&no_slash_fix=true"
       p '-----------------------------'
       p url
@@ -24,7 +23,7 @@ class Fetcher
       rescue OpenURI::HTTPError
         fail "Could not receive data"
       end
-
+      binding.pry
       JSON.parse(data.read)
     end
 
